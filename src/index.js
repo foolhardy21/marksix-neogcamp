@@ -1,39 +1,41 @@
 import './style.css'
+import { header } from './Header'
+import { contentSection } from './MainSection'
 
 const mainDiv = document.querySelector('#maindiv')
-
-
-const header = document.createElement('header')
-header.className = 'headerdiv'
-header.innerText = 'banana talk'
-
-const contentSection = document.createElement('section')
-const inputTextArea = document.createElement('textarea')
-inputTextArea.className = 'inputarea'
-inputTextArea.placeholder = 'Type your text here...'
-const outputTextArea = document.createElement('div')
-outputTextArea.className = 'outputarea'
-outputTextArea.innerText = 'Press the button for translation.'
-const translateBtn = document.createElement('button')
-translateBtn.className = 'btn'
-translateBtn.innerText = 'Translate'
-
 mainDiv.appendChild(header)
-contentSection.appendChild(inputTextArea)
-contentSection.appendChild(translateBtn)
-contentSection.appendChild(outputTextArea)
 mainDiv.appendChild(contentSection)
 
-translateBtn.addEventListener('click',(e) => {
+
+function isInputEmpty(input) {
+    return (input.length < 1) ? false : true
+}
+
+function getUrl(input) {
+    return `https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json?text=${input}`
+}
+
+function showTranslation(output) {
+    document.querySelector('.outputarea').innerText = output
+}
+
+function translateText(e) {
     e.preventDefault()
-    fetch(`https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json?text=${inputTextArea.value}`)
-        .then(response => {
-            return response.json()
-        })
-        .then(data => {
-            outputTextArea.innerText = data.contents.translated
-        })
-        .catch(e => {
-            console.log(e)
-        })
-})
+    const input = document.querySelector('.inputarea').value
+    if( !isInputEmpty(input) ) {
+        window.alert('Enter something')
+    } else {
+        fetch(getUrl(input))
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                showTranslation(data.contents.translated)
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+}
+
+document.querySelector('.btn').addEventListener('click', translateText)
