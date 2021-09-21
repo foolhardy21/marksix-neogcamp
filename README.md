@@ -1,4 +1,4 @@
-# markFour NEOGCAMP Project
+# markSix NEOGCAMP Project
 
 ## Overview
 

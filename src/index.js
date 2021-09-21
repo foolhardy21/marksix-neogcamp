@@ -10,7 +10,7 @@ mainDiv.appendChild(contentSection)
 function isInputEmpty(input) {
     return (input.length < 1) ? false : true
 }
-
+//fake api used to avoid unwanted calls
 function getUrl(input) {
     return `https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json?text=${input}`
 }
