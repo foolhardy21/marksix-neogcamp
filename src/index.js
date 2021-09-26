@@ -12,7 +12,7 @@ function isInputEmpty(input) {
 }
 //fake api used to avoid unwanted calls
 function getUrl(input) {
-    return `https://lessonfourapi.tanaypratap.repl.co/translate/yoda.json?text=${input}`
+    return `https://api.funtranslations.com/translate/navi.json?text=${input}`
 }
 
 function showTranslation(output) {
