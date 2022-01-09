@@ -1,24 +1,21 @@
 import './style.css'
-import { header } from './Header'
-import { contentSection } from './MainSection'
+import header from './Header'
+import contentSection from './MainSection'
 
 const mainDiv = document.querySelector('#maindiv')
 mainDiv.appendChild(header)
 mainDiv.appendChild(contentSection)
 
 
-function isInputEmpty(input) {
-    return (input.length < 1) ? false : true
-}
-function getUrl(input) {
-    return `https://api.funtranslations.com/translate/navi.json?text=${input}`
-}
+const isInputEmpty = input => input.length < 1 ? false : true
 
-function showTranslation(output) {
+const getUrl = input => `https://api.funtranslations.com/translate/navi.json?text=${input}`
+
+const showTranslation = output => {
     document.querySelector('.outputarea').innerText = output
 }
 
-function translateText(e) {
+const translateText = e => {
     e.preventDefault()
     const input = document.querySelector('.inputarea').value
     if( !isInputEmpty(input) ) {
